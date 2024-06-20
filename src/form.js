@@ -113,7 +113,7 @@ function Form() {
           {formData.nombreResidente}
         </div>
         {formData.tipoResidente === 'Inquilino' && (
-          <div style={{ position: 'absolute', top: '590px', left: '550px', color: 'black', fontSize: '18px' }}>
+          <div style={{ position: 'absolute', top: '590px', left: '600px', color: 'black', fontSize: '18px' }}>
             , Teléfono: {formData.telefonoInquilino}
           </div>
         )}
