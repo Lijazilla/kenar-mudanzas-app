@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import html2canvas from 'html2canvas';
-import background from './image/WhatsApp Image 2024-06-19 at 6.14.56 AM.jpeg';
+import background from './image/Formato Mudanzas Kenar.jpg';
 
 function Form() {
   const [formData, setFormData] = useState({
