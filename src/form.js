@@ -33,6 +33,18 @@ function Form() {
     });
   };
 
+  const formatText = (text, maxLength) => {
+    const lines = [];
+    let currentPosition = 0;
+  
+    while (currentPosition < text.length) {
+      lines.push(text.slice(currentPosition, currentPosition + maxLength));
+      currentPosition += maxLength;
+    }
+  
+    return lines;
+  };
+
   return (
     <div>
       <form>
@@ -67,12 +79,11 @@ function Form() {
         )}
         <div>
           <label>Características del Camión:</label>
-          <textarea
+          <input
+          type='text'
             name="caracteristicasCamion"
             value={formData.caracteristicasCamion}
             onChange={handleChange}
-            rows="2"
-            style={{ resize: 'none', overflow: 'hidden', height: '40px' }}
           />
         </div>
         <div>
@@ -81,53 +92,57 @@ function Form() {
         </div>
         <div>
           <label>Datos del Chofer y Trabajadores:</label>
-          <textarea
+          <input
             name="datosChofer"
+            type='text'
             value={formData.datosChofer}
             onChange={handleChange}
-            rows="2"
-            style={{ resize: 'none', overflow: 'hidden', height: '40px' }}
           />
         </div>
         <div>
           <label>Notas:</label>
-          <textarea
+          <input
             name="notas"
+            type='text'
             value={formData.notas}
             onChange={handleChange}
-            rows="2"
-            style={{ resize: 'none', overflow: 'hidden', height: '40px' }}
           />
         </div>
         <button type="button" onClick={handleGenerateImage}>Generar Imagen</button>
       </form>
-      <div id="capture" style={{ position: 'absolute', left:'-9999px', width: '800px', height: '1000px' }}>
+      <div id="capture" style={{ position: 'absolute', left:'100px', width: '800px', height: '1000px' }}>
         <img src={background} alt="Formato" style={{ width: '100%', height: '100%' }} />
         <div style={{ position: 'absolute', top: '430px', left: '275px', color: 'black', fontSize: '18px' }}>
           {formData.fechaHora}
         </div>
-        <div style={{ position: 'absolute', top: '560px', left: '278px', color: 'black', fontSize: '18px' }}>
+        <div style={{ position: 'absolute', top: '530px', left: '278px', color: 'black', fontSize: '18px' }}>
           {formData.unidadPrivativa}
         </div>
-        <div style={{ position: 'absolute', top: '590px', left: '278px', color: 'black', fontSize: '18px' }}>
+        <div style={{ position: 'absolute', top: '575px', left: '274px', color: 'black', fontSize: '18px' }}>
           {formData.nombreResidente}
         </div>
         {formData.tipoResidente === 'Inquilino' && (
-          <div style={{ position: 'absolute', top: '590px', left: '450px', color: 'black', fontSize: '18px' }}>
-            , Teléfono: {formData.telefonoInquilino}
+          <div style={{ position: 'absolute', top: '575px', left: '490px', color: 'black', fontSize: '18px' }}>
+            Tel: {formData.telefonoInquilino}
           </div>
         )}
-        <div style={{ position: 'absolute', top: '700px', left: '274px', color: 'black', fontSize: '18px', whiteSpace: 'pre-wrap' }}>
-          {formData.caracteristicasCamion}
+        <div style={{ position: 'absolute', top: '630px', left: '275px', color: 'black', fontSize: '18px', whiteSpace: 'pre-wrap' }}>
+            {formatText(formData.caracteristicasCamion, 34).map((line, index) => (
+             <div key={index}>{line}</div>
+            ))}
         </div>
-        <div style={{ position: 'absolute', top: '805px', left: '275px', color: 'black', fontSize: '18px' }}>
+        <div style={{ position: 'absolute', top: '730px', left: '275px', color: 'black', fontSize: '18px' }}>
           {formData.empresaMudanza}
         </div>
-        <div style={{ position: 'absolute', top: '850px', left: '275px', color: 'black', fontSize: '18px', whiteSpace: 'pre-wrap' }}>
-          {formData.datosChofer}
+        <div style={{ position: 'absolute', top: '775px', left: '275px', color: 'black', fontSize: '18px', whiteSpace: 'pre-wrap' }}>
+            {formatText(formData.datosChofer, 43).map((line, index) => (
+                <div key={index}>{line}</div>
+              ))}
         </div>
-        <div style={{ position: 'absolute', top: '930px', left: '275px', color: 'black', fontSize: '18px', whiteSpace: 'pre-wrap' }}>
-          {formData.notas}
+        <div style={{ position: 'absolute', top: '850px', left: '275px', color: 'black', fontSize: '18px', whiteSpace: 'pre-wrap' }}>
+            {formatText(formData.notas, 36).map((line, index) => (
+                <div key={index}>{line}</div>
+              ))}
         </div>
         <div style={{ position: 'absolute', top: '254px', left: '564px', color: 'white', fontSize: '48px', textTransform: 'uppercase' }}>
           {formData.nombreCondominio}
