@@ -110,7 +110,7 @@ function Form() {
         </div>
         <button type="button" onClick={handleGenerateImage}>Generar Imagen</button>
       </form>
-      <div id="capture" style={{ position: 'absolute', left:'100px', width: '800px', height: '1000px' }}>
+      <div id="capture" style={{ position: 'absolute', left:'-9999px', width: '800px', height: '1000px' }}>
         <img src={background} alt="Formato" style={{ width: '100%', height: '100%' }} />
         <div style={{ position: 'absolute', top: '430px', left: '275px', color: 'black', fontSize: '18px' }}>
           {formData.fechaHora}
